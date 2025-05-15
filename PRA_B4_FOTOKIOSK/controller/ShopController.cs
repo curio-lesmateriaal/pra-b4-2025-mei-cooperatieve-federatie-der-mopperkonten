@@ -32,7 +32,20 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Wordt uitgevoerd wanneer er op de Toevoegen knop is geklikt
         public void AddButtonClick()
         {
-            
+            int? photoCount = ShopManager.GetAmount();
+            int? photoId = ShopManager.GetFotoId();
+            KioskProduct product = ShopManager.GetSelectedProduct();
+
+            if (photoCount.HasValue && product != null && photoId.HasValue) { // make sure everything is valid
+                double productPrice = 0;
+                // KioskProduct doesnt have a price member so will calculate manually for now, and no function for getting price yet
+                if (product.Name == "Foto 10x15")
+                {
+                    productPrice = 2.25;
+                }
+
+                ShopManager.SetShopReceipt("Eindbedrag\n€" + (photoCount * productPrice).ToString());
+            }
         }
 
         // Wordt uitgevoerd wanneer er op de Resetten knop is geklikt
