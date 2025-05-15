@@ -16,8 +16,6 @@ namespace PRA_B4_FOTOKIOSK.controller
 
         public void Start()
         {
-            //ShopManager.SetShopPriceList("Prijzen:\nFoto 10x15: €2.55");
-
             // Stel de bon in onderaan het scherm
             ShopManager.SetShopReceipt("Eindbedrag\n€");
 
@@ -29,7 +27,6 @@ namespace PRA_B4_FOTOKIOSK.controller
             // Stel de prijslijst in aan de rechter kant.
             foreach (KioskProduct product in ShopManager.Products)
             {
-                //ShopManager.SetShopPriceList($"{product.Name}: €{product.Price}\n");
                 ShopManager.AddShopPriceList($"{product.Name}: €{product.Price}\n");
                 ShopManager.GetShopPriceList();
             }
