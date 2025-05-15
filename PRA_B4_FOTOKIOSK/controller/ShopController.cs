@@ -44,7 +44,6 @@ namespace PRA_B4_FOTOKIOSK.controller
 
             if (photoCount.HasValue && product != null && photoId.HasValue) { // make sure everything is valid
                 double productPrice = 0;
-                // KioskProduct doesnt have a price member so will calculate manually for now, and no function for getting price yet
 
                 foreach (var item in ShopManager.Products)
                 {
