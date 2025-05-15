@@ -45,9 +45,14 @@ namespace PRA_B4_FOTOKIOSK.controller
             if (photoCount.HasValue && product != null && photoId.HasValue) { // make sure everything is valid
                 double productPrice = 0;
                 // KioskProduct doesnt have a price member so will calculate manually for now, and no function for getting price yet
-                if (product.Name == "Foto 10x15")
+
+                foreach (var item in ShopManager.Products)
                 {
-                    productPrice = 2.25;
+                    if (item.Name == product.Name)
+                    {
+                        productPrice = double.Parse(item.Price);
+                        break;
+                    }
                 }
 
                 ShopManager.SetShopReceipt("Eindbedrag\n€" + (photoCount * productPrice).ToString());
