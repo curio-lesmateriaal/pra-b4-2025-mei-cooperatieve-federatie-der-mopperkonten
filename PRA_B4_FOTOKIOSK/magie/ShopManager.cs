@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.RightsManagement;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -15,6 +16,7 @@ namespace PRA_B4_FOTOKIOSK.magie
     {
 
         public static List<KioskProduct> Products = new List<KioskProduct>();    
+        public static List<OrderedProduct> receiptProducts = new List<OrderedProduct>();
         public static Home Instance { get; set; }
 
         public static void SetShopPriceList(string text)
@@ -87,6 +89,18 @@ namespace PRA_B4_FOTOKIOSK.magie
                 id = amount;
             }
             return id;
+        }
+
+        public static double GetTotalPrice()
+        {
+            double total = 0;
+
+            foreach (var item in receiptProducts)
+            {
+                total += item.totalPrice;
+            }
+
+            return total;
         }
     }
 }
