@@ -9,19 +9,38 @@
     <Grid>
         <TabControl>
 
+
             <TabItem Header="Foto's">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="17*"/>
                         <ColumnDefinition Width="1897*"/>
                     </Grid.ColumnDefinitions>
-                    <ScrollViewer Margin="10,38,10,43" Grid.ColumnSpan="2">
-                        <WrapPanel x:Name="spPictures">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+
+                    <StackPanel>
+                        <Canvas Width="414" Height="100">
+                            <Image Source="/imagesThemePark/logo-big-v4.png"
+                            Width="404" Height="130"
+                            Canvas.Left="607" Canvas.Top="-3" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.251,0.493"/>
+                        </Canvas>
+                    </StackPanel>
+
+             
+
+                    <ScrollViewer Margin="10,121,10,28" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
+                        <WrapPanel x:Name="spPictures" HorizontalAlignment="Center" VerticalAlignment="Center">
                         </WrapPanel>
                     </ScrollViewer>
-                    <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="10,998,0,0" VerticalAlignment="Top" Width="83" Height="28" Click="btnRefresh_Click" Grid.ColumnSpan="2"/>
+
+                    <Button x:Name="btnRefresh" Content="Refresh" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="83" Height="28" Click="btnRefresh_Click" Grid.ColumnSpan="2" Grid.Row="1"/>
                 </Grid>
             </TabItem>
+
             <TabItem Header="Kassa">
                 <Grid>
                     <Label Content="Foto-id:" HorizontalAlignment="Left" Margin="100,192,0,0" VerticalAlignment="Top" Height="24" Width="255"/>

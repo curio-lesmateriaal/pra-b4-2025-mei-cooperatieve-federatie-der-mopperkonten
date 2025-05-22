@@ -20,36 +20,56 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Start methode die wordt aangeroepen wanneer de foto pagina opent.
         public void Start()
         {
-            // Haal het huidige dagnummer op (0 = Zondag t/m 6 = Zaterdag)
             var now = DateTime.Now;
             int day = (int)now.DayOfWeek;
 
-            // Initializeer de lijst met fotos
-            // WAARSCHUWING. ZONDER FILTER LAADT DIT ALLES!
+            // Calculate the time range
+            DateTime lowerBound = now.AddMinutes(-30); // 30 minutes ago
+            DateTime upperBound = now.AddMinutes(-2);  // 2 minutes ago
+
+            // Initialize the list with photos
             foreach (string dir in Directory.GetDirectories(@"../../../fotos"))
             {
-                // Verkrijg het eerste deel van de mapnaam (bijv. "2" van "2_Dinsdag")
                 string dirName = Path.GetFileName(dir);
                 int dirDayNumber;
 
-                // Probeer de mapnaam te converteren naar een integer
                 if (int.TryParse(dirName.Split('_')[0], out dirDayNumber))
                 {
-                    // Controleer of de map overeenkomt met het huidige dagnummer
                     if (dirDayNumber == day)
                     {
                         foreach (string file in Directory.GetFiles(dir))
                         {
-                            // Voeg de foto toe aan de lijst
-                            PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file });
+                            // Retrieve the file name without extension
+                            string fileName = Path.GetFileNameWithoutExtension(file);
+                            string[] parts = fileName.Split('_');
+
+                            // Ensure the file name has the correct format
+                            if (parts.Length >= 3) // HH_MM_SS_idxxxx
+                            {
+                                // Parse the time components
+                                int hour = int.Parse(parts[0]);
+                                int minute = int.Parse(parts[1]);
+                                int second = int.Parse(parts[2]);
+
+                                // Create DateTime from file name
+                                DateTime fileDateTime = new DateTime(now.Year, now.Month, now.Day, hour, minute, second);
+
+                                // Check if the photo is within the specified range
+                                if (fileDateTime >= lowerBound && fileDateTime <= upperBound)
+                                {
+                                    // Add to the list if within bounds
+                                    PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file });
+                                }
+                            }
                         }
                     }
                 }
             }
 
-            // Update de fotos
+            // Update the photos
             PictureManager.UpdatePictures(PicturesToDisplay);
         }
+
 
         // Wordt uitgevoerd wanneer er op de Refresh knop is geklikt
         public void RefreshButtonClick()

@@ -53,15 +53,20 @@ namespace PRA_B4_FOTOKIOSK.controller
                         break;
                     }
                 }
-
-                ShopManager.SetShopReceipt("Eindbedrag\n€" + (photoCount * productPrice).ToString());
+                ShopManager.receiptProducts.Add(new OrderedProduct() { productName = product.Name, amount = (int)photoCount, photoID = (int)photoId, totalPrice = productPrice * (int)photoCount});
+                ShopManager.SetShopReceipt("Eindbedrag\n€" + ((photoCount * productPrice) + ShopManager.GetTotalPrice()).ToString() + "\n\n");
+                foreach (var item in ShopManager.receiptProducts)
+                {
+                    ShopManager.AddShopReceipt("Product: " + item.productName + "\n" + "Foto ID: " + item.photoID + "\n" + "Aantal: " + item.amount + "\n" + "Totale Prijs: €" + item.totalPrice + "\n\n");
+                }
             }
         }
 
         // Wordt uitgevoerd wanneer er op de Resetten knop is geklikt
         public void ResetButtonClick()
         {
-
+            ShopManager.receiptProducts.Clear();
+            ShopManager.SetShopReceipt("Eindbedrag\n€");
         }
 
         // Wordt uitgevoerd wanneer er op de Save knop is geklikt
@@ -70,7 +75,7 @@ namespace PRA_B4_FOTOKIOSK.controller
             int receiptCount = 0;
             receiptCount++;
             
-            string receipt = $"Product:        {ShopManager.GetSelectedProduct().Name}\n" +
+            string receipt =          $"Product:        {ShopManager.GetSelectedProduct().Name}\n" +
                                       $"Beschrijving:   {ShopManager.GetSelectedProduct().Description}\n" +
                                       $"Aantal:         {ShopManager.GetAmount().ToString()}\n\n" +
                                       $"Prijs:          €{ShopManager.GetSelectedProduct().Price}";
