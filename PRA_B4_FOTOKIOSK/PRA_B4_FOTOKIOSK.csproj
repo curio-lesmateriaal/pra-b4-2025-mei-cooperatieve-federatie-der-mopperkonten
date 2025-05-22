@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <Folder Include="fotos\" />
+    <Folder Include="receipts\" />
   </ItemGroup>
 
 </Project>
