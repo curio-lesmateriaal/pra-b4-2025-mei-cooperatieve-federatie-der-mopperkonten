@@ -27,6 +27,9 @@ namespace PRA_B4_FOTOKIOSK.controller
             DateTime lowerBound = now.AddMinutes(-30); // 30 minutes ago
             DateTime upperBound = now.AddMinutes(-2);  // 2 minutes ago
 
+            // Temporary list to hold photos with their DateTime
+            var photosWithDateTime = new List<(KioskPhoto Photo, DateTime DateTime)>();
+
             // Initialize the list with photos
             foreach (string dir in Directory.GetDirectories(@"../../../fotos"))
             {
@@ -57,8 +60,8 @@ namespace PRA_B4_FOTOKIOSK.controller
                                 // Check if the photo is within the specified range
                                 if (fileDateTime >= lowerBound && fileDateTime <= upperBound)
                                 {
-                                    // Add to the list if within bounds
-                                    PicturesToDisplay.Add(new KioskPhoto() { Id = 0, Source = file });
+                                    // Add to the temporary list if within bounds
+                                    photosWithDateTime.Add((new KioskPhoto() { Id = 0, Source = file }, fileDateTime));
                                 }
                             }
                         }
@@ -66,9 +69,16 @@ namespace PRA_B4_FOTOKIOSK.controller
                 }
             }
 
+            // Sort the photos by DateTime in descending order
+            PicturesToDisplay = photosWithDateTime
+                .OrderByDescending(p => p.DateTime)
+                .Select(p => p.Photo)
+                .ToList();
+
             // Update the photos
             PictureManager.UpdatePictures(PicturesToDisplay);
         }
+
 
 
         // Wordt uitgevoerd wanneer er op de Refresh knop is geklikt

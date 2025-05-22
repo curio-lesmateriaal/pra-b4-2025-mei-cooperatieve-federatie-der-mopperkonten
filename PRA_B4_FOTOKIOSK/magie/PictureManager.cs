@@ -38,7 +38,7 @@ namespace PRA_B4_FOTOKIOSK.magie
                 Image image = new Image
                 {
                     Source = pathToImage(picture.Source),
-                    Width = 1220 / 3.5,
+                    Width = 1020 / 3.5,
                     Height = 1080 / 3.5,
                     Margin = new Thickness(10),  // Fixed this line
                     Stretch = System.Windows.Media.Stretch.UniformToFill,

@@ -26,11 +26,11 @@
                         <Canvas Width="414" Height="100">
                             <Image Source="/imagesThemePark/logo-big-v4.png"
                             Width="404" Height="130"
-                            Canvas.Left="607" Canvas.Top="-3" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.251,0.493"/>
+                            Canvas.Left="578" Canvas.Top="2" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.251,0.493"/>
                         </Canvas>
                     </StackPanel>
 
-             
+
 
                     <ScrollViewer Margin="10,121,10,28" Grid.ColumnSpan="2" Grid.Row="0" Grid.RowSpan="2">
                         <WrapPanel x:Name="spPictures" HorizontalAlignment="Center" VerticalAlignment="Center">
