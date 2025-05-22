@@ -1,0 +1,5 @@
+Product:        Foto 10x20
+Beschrijving:   10x18 formaat
+Aantal:         2244323
+
+Prijs:          €2,95

@@ -26,7 +26,7 @@
                         <Canvas Width="414" Height="100">
                             <Image Source="/imagesThemePark/logo-big-v4.png"
                             Width="404" Height="130"
-                            Canvas.Left="578" Canvas.Top="2" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.251,0.493"/>
+                            Canvas.Left="528" Canvas.Top="-12" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="0.251,0.493"/>
                         </Canvas>
                     </StackPanel>
 
