@@ -19,15 +19,16 @@ namespace PRA_B4_FOTOKIOSK.magie
             Instance.spPictures.Children.Clear();
             WrapPanel wrapPanel = new WrapPanel
             {
-                // Green-blue glowing effect
+                //foto glowing effect
                 Margin = new Thickness(10),
                 Orientation = Orientation.Horizontal,
                 Effect = new DropShadowEffect
                 {
-                    Color = Color.FromRgb(0, 128, 255), // Blended blue-green color
-                    ShadowDepth = 0, // No shadow depth for a glow effect
-                    BlurRadius = 10, // Adjust the blur radius for the glowing effect
-                    Opacity = 0.8 // Transparency level for the glow
+                    //foto make up
+                    Color = Color.FromRgb(0, 128, 255),
+                    ShadowDepth = 0,
+                    BlurRadius = 10,
+                    Opacity = 0.8 
                 }
 
 
@@ -40,11 +41,11 @@ namespace PRA_B4_FOTOKIOSK.magie
                     Source = pathToImage(picture.Source),
                     Width = 1020 / 3.5,
                     Height = 1080 / 3.5,
-                    Margin = new Thickness(10),  // Fixed this line
+                    Margin = new Thickness(10), 
                     Stretch = System.Windows.Media.Stretch.UniformToFill,
                 };
 
-                // Adding a border and shadow effect
+                //foto make up
                 Border border = new Border
                 {
                     BorderBrush = new SolidColorBrush(Colors.Gray),
@@ -57,7 +58,7 @@ namespace PRA_B4_FOTOKIOSK.magie
                 // Adding mouse hover effect
                 border.MouseEnter += (s, e) =>
                 {
-                    border.Background = new SolidColorBrush(Color.FromRgb(220, 220, 220)); // Change background on hover
+                    border.Background = new SolidColorBrush(Color.FromRgb(220, 220, 220));
                 };
                 border.MouseLeave += (s, e) =>
                 {
