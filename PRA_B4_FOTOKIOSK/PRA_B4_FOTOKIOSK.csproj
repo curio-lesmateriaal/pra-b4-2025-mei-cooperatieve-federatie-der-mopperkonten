@@ -8,7 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="imagesThemePark\logo-big-v4.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="fotos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="imagesThemePark\logo-big-v4.png" />
   </ItemGroup>
 
 </Project>
