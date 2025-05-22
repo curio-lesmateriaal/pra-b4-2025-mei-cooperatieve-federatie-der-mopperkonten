@@ -20,9 +20,9 @@ namespace PRA_B4_FOTOKIOSK.controller
             ShopManager.SetShopReceipt("Eindbedrag\n€");
 
             // Vul de productlijst met producten
-            ShopManager.Products.Add(new KioskProduct() { Name = "Foto 10x15", Price = "2.55", Description = "10x15 formaat" });
-            ShopManager.Products.Add(new KioskProduct() { Name = "Foto 10x20", Price = "2.95", Description = "10x18 formaat" });
-            ShopManager.Products.Add(new KioskProduct() { Name = "Foto 10x25", Price = "3.65", Description = "10x25 formaat" });
+            ShopManager.Products.Add(new KioskProduct() { Name = "Foto 10x15", Price = "2,55", Description = "10x15 formaat" });
+            ShopManager.Products.Add(new KioskProduct() { Name = "Foto 10x20", Price = "2,95", Description = "10x18 formaat" });
+            ShopManager.Products.Add(new KioskProduct() { Name = "Foto 10x25", Price = "3,65", Description = "10x25 formaat" });
 
             // Stel de prijslijst in aan de rechter kant.
             foreach (KioskProduct product in ShopManager.Products)
@@ -72,8 +72,22 @@ namespace PRA_B4_FOTOKIOSK.controller
         // Wordt uitgevoerd wanneer er op de Save knop is geklikt
         public void SaveButtonClick()
         {
+            int receiptCount = 0;
+            receiptCount++;
+            
+            string receipt =          $"Product:        {ShopManager.GetSelectedProduct().Name}\n" +
+                                      $"Beschrijving:   {ShopManager.GetSelectedProduct().Description}\n" +
+                                      $"Aantal:         {ShopManager.GetAmount().ToString()}\n\n" +
+                                      $"Prijs:          €{ShopManager.GetSelectedProduct().Price}";
 
+
+            string receiptsPath = "../../../receipts";
+            if (!Directory.Exists(receiptsPath))
+            {
+                Directory.CreateDirectory(receiptsPath);
+            }
+            int fileCount = Directory.GetFiles(receiptsPath).Length;
+            File.WriteAllText($"{receiptsPath}/receipt{fileCount}.txt", receipt);
         }
-
     }
 }

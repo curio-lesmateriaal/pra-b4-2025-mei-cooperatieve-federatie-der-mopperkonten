@@ -1,0 +1,5 @@
+Product:        Foto 10x15
+Beschrijving:   10x15 formaat
+Aantal:         1
+
+Prijs:          €2,55

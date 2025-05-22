@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <Folder Include="fotos\" />
+    <Folder Include="receipts\" />
   </ItemGroup>
 
   <ItemGroup>
