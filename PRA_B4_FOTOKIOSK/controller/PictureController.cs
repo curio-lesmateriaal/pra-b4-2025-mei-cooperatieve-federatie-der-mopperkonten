@@ -2,6 +2,7 @@
 using PRA_B4_FOTOKIOSK.models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -24,8 +25,8 @@ namespace PRA_B4_FOTOKIOSK.controller
             int day = (int)now.DayOfWeek;
 
             // Calculate the time range
-            DateTime lowerBound = now.AddMinutes(-30); // 30 minutes ago
-            DateTime upperBound = now.AddMinutes(-2);  // 2 minutes ago
+            DateTime thirtyMinutesAgo = now.AddMinutes(-30); // 30 minutes ago
+            DateTime twoMinutesAgo = now.AddMinutes(-2);  // 2 minutes ago
 
             // Temporary list to hold photos with their DateTime
             var photosWithDateTime = new List<(KioskPhoto Photo, DateTime DateTime)>();
@@ -56,9 +57,10 @@ namespace PRA_B4_FOTOKIOSK.controller
 
                                 // Create DateTime from file name
                                 DateTime fileDateTime = new DateTime(now.Year, now.Month, now.Day, hour, minute, second);
+                                Trace.WriteLine(fileDateTime);
 
                                 // Check if the photo is within the specified range
-                                if (fileDateTime >= lowerBound && fileDateTime <= upperBound)
+                                if (fileDateTime >= twoMinutesAgo && fileDateTime <= thirtyMinutesAgo)
                                 {
                                     // Add to the temporary list if within bounds
                                     photosWithDateTime.Add((new KioskPhoto() { Id = 0, Source = file }, fileDateTime));
@@ -71,9 +73,7 @@ namespace PRA_B4_FOTOKIOSK.controller
 
             // Sort the photos by DateTime in descending order
             PicturesToDisplay = photosWithDateTime
-                .OrderByDescending(p => p.DateTime)
-                .Select(p => p.Photo)
-                .ToList();
+                .OrderByDescending(p => p.DateTime).Select(p => p.Photo).ToList();
 
             // Update the photos
             PictureManager.UpdatePictures(PicturesToDisplay);
