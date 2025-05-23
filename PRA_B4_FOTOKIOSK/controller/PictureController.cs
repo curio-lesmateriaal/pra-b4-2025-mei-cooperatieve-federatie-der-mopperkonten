@@ -60,7 +60,7 @@ namespace PRA_B4_FOTOKIOSK.controller
                                 Trace.WriteLine(fileDateTime);
 
                                 // Check if the photo is within the specified range
-                                if (fileDateTime >= twoMinutesAgo && fileDateTime <= thirtyMinutesAgo)
+                                if (fileDateTime < twoMinutesAgo && fileDateTime > thirtyMinutesAgo)
                                 {
                                     // Add to the temporary list if within bounds
                                     photosWithDateTime.Add((new KioskPhoto() { Id = 0, Source = file }, fileDateTime));
