@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="fotos\5_Vrijdag\Screenshot_2024_12_06_ 133231_id10253.png" />
+    <None Remove="fotos\5_Vrijdag\Screenshot_2025_02_27_120747_id10252.png" />
     <None Remove="imagesThemePark\logo-big-v4.png" />
   </ItemGroup>
 
