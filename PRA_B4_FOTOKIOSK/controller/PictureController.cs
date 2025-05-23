@@ -24,7 +24,7 @@ namespace PRA_B4_FOTOKIOSK.controller
             //check of het tijd boven 10:05:30 is zo niet geef melding dat ze pas dan beschikbaar zijn
 
             TimeSpan availableStartTime = new TimeSpan(10, 5, 30);
-            TimeSpan availableEndTime = new TimeSpan(10, 6, 0);
+            TimeSpan availableEndTime = new TimeSpan(10, 5, 31);
 
             if (now.TimeOfDay < availableStartTime)
             {
